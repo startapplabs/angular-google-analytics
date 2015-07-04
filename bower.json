@@ -3,12 +3,12 @@
   "name": "angular-google-analytics",
   "description": "Easy Analytics for your AngularJS application",
   "version": "0.0.16",
-  "homepage": "https://github.com/revolunet/angular-google-analytics",
+  "homepage": "https://github.com/startapplabs/angular-google-analytics",
   "repository": {
     "type": "git",
     "url": "git://github.com/startapplabs/angular-google-analytics.git"
   },
-  "main": "./dist/angular-google-analytics.min.js",
+  "main": "./src/angular-google-analytics.js",
   "dependencies": {
     "angular": ">=1"
   },
