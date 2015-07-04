@@ -118,7 +118,9 @@ angular.module('angular-google-analytics', [])
     /**
      * Public Service
      */
-    this.$get = ['$document', '$location', '$log', '$rootScope', '$window', function ($document, $location, $log, $rootScope, $window) {
+    // AGUSTIN: remove this to prevent cyclic dependency for using $rootScope
+    // this.$get = ['$document', '$location', '$log', '$rootScope', '$window', function ($document, $location, $log, $rootScope, $window) {
+    this.$get = ['$document', '$location', '$log', '$window', function ($document, $location, $log, $window) {
       var me = this;
 
       var getUrl = function () {
@@ -790,12 +792,13 @@ angular.module('angular-google-analytics', [])
         }
       }
 
+      // AGUSTIN: remove this to prevent cyclic dependency for using $rootScope
       // activates page tracking
-      if (trackRoutes) {
-        $rootScope.$on(pageEvent, function () {
-          me._trackPage();
-        });
-      }
+      // if (trackRoutes) {
+      //   $rootScope.$on(pageEvent, function () {
+      //     me._trackPage();
+      //   });
+      // }
 
       /**
        * Track User Timings
