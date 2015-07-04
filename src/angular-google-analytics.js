@@ -118,14 +118,16 @@ angular.module('angular-google-analytics', [])
     /**
      * Public Service
      */
-    // AGUSTIN: remove this to prevent cyclic dependency for using $rootScope
+    // AGUSTIN: remove this to prevent cyclic dependency for using $rootScope and $location
     // this.$get = ['$document', '$location', '$log', '$rootScope', '$window', function ($document, $location, $log, $rootScope, $window) {
-    this.$get = ['$document', '$location', '$log', '$window', function ($document, $location, $log, $window) {
+    this.$get = ['$document', '$log', '$window', function ($document, $log, $window) {
       var me = this;
 
       var getUrl = function () {
-        var url = trackUrlParams ? $location.url() : $location.path();
-        return removeRegExp ? url.replace(removeRegExp, '') : url;
+        // AGUSTIN: remove this to prevent cyclic dependency for using $location
+        // var url = trackUrlParams ? $location.url() : $location.path();
+        // return removeRegExp ? url.replace(removeRegExp, '') : url;
+        return $window.location.href;
       };
 
       var getUtmParams = function () {
@@ -138,14 +140,15 @@ angular.module('angular-google-analytics', [])
         };
         var object = {};
 
-        angular.forEach($location.search(), function (value, key) {
-          var campaignVar = utmToCampaignVar[key];
-
-          if (angular.isDefined(campaignVar)) {
-            object[campaignVar] = value;
-          }
-
-        });
+        // AGUSTIN: remove this to prevent cyclic dependency for using $location
+        // angular.forEach($location.search(), function (value, key) {
+        //   var campaignVar = utmToCampaignVar[key];
+        //
+        //   if (angular.isDefined(campaignVar)) {
+        //     object[campaignVar] = value;
+        //   }
+        //
+        // });
 
         return object;
       };
